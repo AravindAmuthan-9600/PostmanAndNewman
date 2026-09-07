@@ -1,0 +1,117 @@
+{
+  "info": {
+    "name": "Flask User Management API Suite",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Health Check",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://13.126.5.30:5000/health",
+          "protocol": "http",
+          "host": [ "13", "126", "5", "30" ],
+          "port": "5000",
+          "path": [ "health" ]
+        }
+      }
+    },
+    {
+      "name": "2. Get All Users (Initial)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://13.126.5.30:5000/users",
+          "protocol": "http",
+          "host": [ "13", "126", "5", "30" ],
+          "port": "5000",
+          "path": [ "users" ]
+        }
+      }
+    },
+    {
+      "name": "3. Create New User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 201 Created', function () { pm.response.to.have.status(201); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Suresh\",\n  \"role\": \"Cloud Engineer\"\n}"
+        },
+        "url": {
+          "raw": "http://13.126.5.30:5000/users",
+          "protocol": "http",
+          "host": [ "13", "126", "5", "30" ],
+          "port": "5000",
+          "path": [ "users" ]
+        }
+      }
+    },
+    {
+      "name": "4. Get Single User (User 1)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://13.126.5.30:5000/users/1",
+          "protocol": "http",
+          "host": [ "13", "126", "5", "30" ],
+          "port": "5000",
+          "path": [ "users", "1" ]
+        }
+      }
+    }
+  ]
+}
