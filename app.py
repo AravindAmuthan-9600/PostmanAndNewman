@@ -38,7 +38,6 @@ def get_users():
 
 @app.route("/users", methods=["POST"])
 def create_user():
-
     data = request.get_json()
 
     if not data or "name" not in data or "role" not in data:
@@ -59,7 +58,6 @@ def create_user():
 
 @app.route("/users/<int:user_id>", methods=["GET"])
 def get_user(user_id):
-
     user = next(
         (user for user in users if user["id"] == user_id),
         None
