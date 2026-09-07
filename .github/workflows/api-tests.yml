@@ -12,10 +12,10 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
@@ -30,21 +30,21 @@ jobs:
           sleep 3
 
       - name: Install Node.js & Newman
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
 
-      - name: Install Newman
+      - name: Install Newman & Reporters
         run: |
           npm install -g newman newman-reporter-htmlextra
 
       - name: Run Newman Tests
         run: |
-          newman run collection.json -r cli,htmlextra --reporter-htmlextra-export test-report.html
+          newman run collection.yaml -r cli,htmlextra --reporter-htmlextra-export test-report.html
 
       - name: Upload Test Report Artifact
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: postman-test-report
           path: test-report.html
