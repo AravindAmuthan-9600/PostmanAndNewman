@@ -1,0 +1,22 @@
+services:
+  web-api:
+    build: .
+    container_name: flask_api_server
+    ports:
+      - "5000:5000"
+    healthcheck:
+      test: ["CMD-SHELL", "python -c 'import urllib.request; urllib.request.urlopen(\"http://localhost:5000/health\")' || exit 1"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+
+  newman-tests:
+    image: postman/newman:alpine
+    container_name: newman_test_runner
+    depends_on:
+      web-api:
+        condition: service_healthy
+    volumes:
+      - .:/etc/newman
+    command:
+      run collection.json -r cli

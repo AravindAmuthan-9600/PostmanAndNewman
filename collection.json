@@ -1,0 +1,40 @@
+{
+  "info": {
+    "name": "Flask User Management API Suite",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Health Check",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": ["pm.test('Status code is 200', function () { pm.response.to.have.status(200); });"]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "url": "http://web-api:5000/health"
+      }
+    },
+    {
+      "name": "2. Get All Users",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": ["pm.test('Status code is 200', function () { pm.response.to.have.status(200); });"]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "url": "http://web-api:5000/users"
+      }
+    }
+  ]
+}
