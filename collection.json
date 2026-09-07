@@ -11,29 +11,135 @@
           "listen": "test",
           "script": {
             "type": "text/javascript",
-            "exec": ["pm.test('Status code is 200', function () { pm.response.to.have.status(200); });"]
+            "exec": [
+              "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });"
+            ]
           }
         }
       ],
       "request": {
         "method": "GET",
-        "url": "http://web-api:5000/health"
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:5000/health",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5000",
+          "path": [
+            "health"
+          ]
+        }
       }
     },
     {
-      "name": "2. Get All Users",
+      "name": "2. Get All Users (Initial)",
       "event": [
         {
           "listen": "test",
           "script": {
             "type": "text/javascript",
-            "exec": ["pm.test('Status code is 200', function () { pm.response.to.have.status(200); });"]
+            "exec": [
+              "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });"
+            ]
           }
         }
       ],
       "request": {
         "method": "GET",
-        "url": "http://web-api:5000/users"
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:5000/users",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5000",
+          "path": [
+            "users"
+          ]
+        }
+      }
+    },
+    {
+      "name": "3. Create New User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 201 Created', function () { pm.response.to.have.status(201); });"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Suresh\",\n  \"role\": \"Cloud Engineer\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:5000/users",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5000",
+          "path": [
+            "users"
+          ]
+        }
+      }
+    },
+    {
+      "name": "4. Get Single User (User 1)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:5000/users/1",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "5000",
+          "path": [
+            "users",
+            "1"
+          ]
+        }
       }
     }
   ]
